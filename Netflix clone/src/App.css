@@ -1,0 +1,51 @@
+body {
+  background: rgb(44, 43, 43);
+  color: yellow;
+}
+
+.movie-app>.row {
+  overflow-x: auto;
+}
+
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.favourites {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(68, 68, 66);
+  padding: 4px 83px 4px 68px;
+  width: 94.9%;
+  top: 91.9%;
+  left: 8px;
+  z-index: 3;
+}
+.remove-favourites {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(68, 68, 66);
+  padding: 4px 43px 4px 68px;
+  width: 94.9%;
+  top: 91.9%;
+  left: 8px;
+  z-index: 3;
+}
+.favourites,.remove-favourites> span{
+  color: white;
+}
+.empty-favourites{
+  color: white;
+  text-align: center;
+  padding-bottom: 15px;
+}
