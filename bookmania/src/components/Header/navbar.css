@@ -1,0 +1,13 @@
+nav{
+    margin-bottom: 0;
+    padding: 2px;
+}
+
+nav #search{
+    width: 90%;
+}
+
+/* .navbar .form-control{
+    width: 50%;
+    margin-left: 8rem;
+} */

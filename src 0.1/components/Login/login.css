@@ -1,0 +1,28 @@
+
+form{
+    background: url('../../Assets/Images/cesar-couto-TIvFLeqZ4ec-unsplash.jpg');
+    padding: 20px 50px;
+    box-shadow: rgba(0, 0, 0, 0.64) 0px 3px 8px;;
+}
+
+label{
+    position: relative;
+    left: -5.5rem;
+}
+
+button{
+    margin-top: 2.3rem;
+}
+
+.form-group{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-group button{
+    cursor: pointer;
+}
+
+.form-group button:hover{
+    background-color: rgb(31, 81, 156);
+}
