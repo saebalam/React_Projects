@@ -10,8 +10,8 @@ const rootReducer=combineReducers({
     cartReducer:cartReducer
 })
 
-const store = createStore(rootReducer,applyMiddleware(thunk,logger))
-store.subscribe(()=>console.log("store ind",store.getState()))
+const store = createStore(rootReducer,applyMiddleware(thunk))
+// store.subscribe(()=>console.log("store ind",store.getState()))
 
 export default store 
 

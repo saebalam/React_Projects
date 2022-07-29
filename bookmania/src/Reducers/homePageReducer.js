@@ -3,7 +3,7 @@ const istate={
 }
 
 const homePageReducer=(state=istate,action)=>{
-    console.log("reducer ",action.payload);
+    // console.log("reducer ",action.payload);
     switch(action.type){
         case("featuredProducts"): return {
             // action.payload.map(user=>user.id)

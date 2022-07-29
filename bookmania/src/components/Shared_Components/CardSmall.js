@@ -22,9 +22,14 @@ const CardSmall = (props) => {
 
     const dispatch = useDispatch()
     const [cartIcon,setCartIcon]=useState(faCartPlus)
-    const handleAddToCart = ()=>{
-        axios.post('/addToCart',props.props)
-        .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
+    const handleCart = (id)=>{
+        if(cartIcon==faCartPlus){
+            axios.post('/addToCart',props.props)
+            .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
+        }else{
+            axios.post('/removeItem',id)
+            .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
+        }
     }
     
     return (
@@ -39,7 +44,7 @@ const CardSmall = (props) => {
             <Card.Body style={{padding:"3px 5px"}}>
                 <button href="#"><FontAwesomeIcon icon={faHeart} className="heartButton" /></button>
                 {/* <button onClick={()=>{dispatch(cartProducts(props.props)) }}><FontAwesomeIcon icon={faCartPlus} /></button> */}
-                <button onClick={handleAddToCart} ><FontAwesomeIcon icon={cartIcon} className="cartButton"  /></button>
+                <button onClick={()=>handleCart(props.props.id)} ><FontAwesomeIcon icon={cartIcon} className="cartButton"  /></button>
                 
             </Card.Body>
         </Card>

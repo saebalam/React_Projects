@@ -3,7 +3,7 @@ const istate={
 }
 
 const cartReducer=(state=istate,action)=>{
-    console.log("reducer ",action.payload);
+    // console.log("reducer ",action.payload);
     switch(action.type){
         case("addToCart"): return {
             // action.payload.map(user=>user.id)

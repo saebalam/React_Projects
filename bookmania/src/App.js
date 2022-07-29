@@ -15,7 +15,7 @@ import Cart from './components/Cart/Cart';
 
 function App() {
 
-  store.subscribe(()=>console.log("store",store.getState()))
+  // store.subscribe(()=>console.log("store",store.getState()))
   const [userData, setUserData] = useState(null)                  //to check a user is loggedin
   const [featuredProducts,setFeaturedProducts] = useState(null)
 
@@ -27,8 +27,8 @@ function App() {
     axios.get('user')
       .then((res) => {
         const isLoggedin = localStorage.getItem('token')
-        console.log(isLoggedin)
-        console.log("/user",res.data)
+        // console.log(isLoggedin)
+        // console.log("/user",res.data)
         if (isLoggedin == "true") {
           setUser(res.data)
         }
