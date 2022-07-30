@@ -27,8 +27,11 @@ const CardSmall = (props) => {
             axios.post('/addToCart',props.props)
             .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
         }else{
-            axios.post('/removeItem',id)
-            .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
+            
+                // axios.post(`/removeItem/${props.props.id}`)
+                // .then(console.log("added"))
+                // .then(setRefreshCart(cartItems.length-1))
+                // .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
         }
     }
     

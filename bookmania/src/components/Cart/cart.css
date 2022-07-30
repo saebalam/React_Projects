@@ -1,4 +1,38 @@
-.cart-container{
-    margin-top: 80px;
+.main-div{
+    
+    margin-top: 90px;
+    
+}
+.submain-div{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+}
+.submain-div table{
+    border: 1px solid black;
+    margin: 2px;
+}
+table{
+    width: auto;
+}
+.table-heading th{
+padding: 10px;
+}
+
+.td1{
+    display: flex;
+    align-items: center;
+}
+
+
+.td2,.td3,.td4 {
+    padding: 0px 40px;
+}
+.removeBtn:hover{
+    color: red;
+}
+.quantity{
+    display: flex;
+    align-items: center;
 }
