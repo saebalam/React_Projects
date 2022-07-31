@@ -30,6 +30,7 @@ const Home = React.memo(({ userData }) => {
     const dispatch = useDispatch()
     const featuredProductsObject = useSelector(state => state.homePageReducer)
     const [spinner, setSpinner] = useState(true)
+    const [search,setSearch]=useState("")
 
     const fetchUser = () => {
         return function (dispatch) {
@@ -56,6 +57,10 @@ const Home = React.memo(({ userData }) => {
         console.log("in useffect");
         dispatch(fetchUser())
     }, [])
+
+    useEffect(()=>{
+        
+    },[search])
 
 
 

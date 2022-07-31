@@ -24,7 +24,9 @@ const CardSmall = (props) => {
     const [cartIcon,setCartIcon]=useState(faCartPlus)
     const handleCart = (id)=>{
         if(cartIcon==faCartPlus){
-            axios.post('/addToCart',props.props)
+            const obj={...props.props,quantity:1}
+            console.log("props.props",obj)
+            axios.post('/addToCart',obj)
             .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
         }else{
             
@@ -36,7 +38,7 @@ const CardSmall = (props) => {
     }
     
     return (
-        <Card style={{ Width:'13rem',minWidth:"12.7rem",maxHeight:"321px",margin:"10px",}}>
+        <Card style={{ Width:'13rem',minWidth:"12.7rem",maxHeight:"321px",margin:"10px"}} className="card-small">
             {/* {console.log("props src",props.props.src)} */}
             <Card.Img variant="top" style={{maxHeight:"200px" }} src={props.props.src} />
             <ListGroup className="list-group-flush">
