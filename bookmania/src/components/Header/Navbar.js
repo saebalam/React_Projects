@@ -1,12 +1,15 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './navbar.css'
 import { Link, Outlet } from 'react-router-dom'
 import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import filteredProducts from '../../Action_Creators/filteredProducts';
 
 function Navbar(props) {
 
     const [search, setSearch] = useState("")
-    const [suggestions,setSuggestions]=useState(search)
+    const [suggestions, setSuggestions] = useState([])
+    const dispatch = useDispatch()
 
     let button;
     console.log("userData is", props.userData)
@@ -16,22 +19,21 @@ function Navbar(props) {
         props.setUser(null)
     }
 
-    const handleSearch = (e) => {
-        // console.log(e.target.value);
-        
-        // setSearch(e.target.value)
-    }
-
     useEffect(() => {
+
         if (search !== '') {
             axios.post(`/products/${search}`)
                 .then(res => {
-                    console.log("filtered", res.data);
-                    setSuggestions(res.data.id)
+                    console.log("filteredres", res.data)
+                    setSuggestions([])
+                    setSuggestions(res.data)
+                    console.log("sugg nav", suggestions);
                 })
+        } else {
+            setSuggestions([])
         }
     }, [search])
-    
+
 
 
     if (props.userData) {
@@ -68,8 +70,25 @@ function Navbar(props) {
                 {/* <div className='container1'> */}
                 <Link to='/' className='navbar-brand'>BookMania</Link>
                 <div id='search' >
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>setSearch(e.target.value)} />
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setSearch(e.target.value)} />
+                    {(suggestions.length > 0) &&
+                        <div className='suggestion-box' style={{ backgroundColor: '#5c5e60', top: "45px", position: 'absolute',paddingTop:"13px", zIndex: "5" ,width:"77%"}}>
+                            <ul>
+                                {(suggestions.length > 0) &&
+                                    suggestions.map(eachSuggestion => {
+                                        console.log("each", eachSuggestion);
+                                        return <li>{eachSuggestion} <hr /></li>
+                                    })
+                                }
+                            </ul>
+                        </div>
+
+                    }
                 </div>
+
+
+
+
 
                 <button className="navbar-toggler" style={{ fontSize: "0.7rem", padding: "0.5rem 0.5rem", marginTop: "0px" }} type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

@@ -14,8 +14,12 @@ const Cart = () => {
     // const [cartSize,setCartSize]=useState(cartItems.length)
     const [refreshCart, setRefreshCart] = useState(cartItems.length)
     const [quantity, setQuantity] = useState(0)                            //to track change in quantity for re render
+    const [totalPrice,setTotalPrice]=useState()
+    const discount=18
+
 
     useEffect(() => {
+
         axios.get('/cart')
             .then(
                 res => {
@@ -24,6 +28,17 @@ const Cart = () => {
                     setRefreshCart(cartItems.length + 1)
                 }
             )
+
+            axios.get('/getTotalPrice')
+            .then(res=>{
+                var total=0
+                res.data.map(item=>{
+                    total+=item.quantity * parseInt(item.price)
+                    setTotalPrice(total)
+                })
+
+            })
+
     }, [refreshCart, quantity])
 
     const decreaseQuantity = (id) => {
@@ -31,16 +46,15 @@ const Cart = () => {
         // const quan=
         if (quantity >= 1) {
             axios.post(`/decreaseCartQuantity/${id}`)
-                .then(setQuantity(quantity + 1))
-            console.log("upd", cartItems);
+            .then(setQuantity(quantity + 1))
+           
         }
     }
     const increaseQuantity = (id) => {
         axios.post(`/increaseCartQuantity/${id}`)
             .then(setQuantity(quantity + 1))
-        console.log("upd", cartItems);
+            console.log("upd", cartItems);
     }
-
 
     const handleRemoveFromCart = (id) => {
         console.log("id to rem", id);
@@ -49,8 +63,7 @@ const Cart = () => {
         axios.post(`/removeItem/${id}`)
             .then(console.log("added"))
             .then(setRefreshCart(cartItems.length - 1))
-        // console.log("id",id)
-        // console.log("cart length",cartItems.length)
+        
     }
 
     return (
@@ -86,7 +99,7 @@ const Cart = () => {
                                         <div className="my-list-group-flush">
                                             <div>{cartItem.title}</div>
                                             <div>{cartItem.rating}</div>
-                                            <div>{cartItem.price}</div>
+                                            
                                         </div>
                                     </td>
 
@@ -99,7 +112,7 @@ const Cart = () => {
                                     </td>
                                     <td className='td3'>
                                         <div className='amount'>
-                                            Price
+                                        &#8377; {cartItem.price}
                                         </div>
                                     </td>
                                     <td className='td4'>
@@ -127,15 +140,15 @@ const Cart = () => {
                             <div className="payment">
                                 <div>
                                     <p>Total Price :</p>
-                                    <p>23$</p>
+                                    <p>&#8377; {totalPrice}</p>
                                 </div>
                                 <div>
                                     <p>Discount</p>
-                                    <p>2$</p>
+                                    <p>&#8377; {discount}</p>
                                 </div>
                                 <div>
                                     <p>Total</p>
-                                    <p>21$</p>
+                                    <p>&#8377; {totalPrice-discount}</p>
                                 </div>
                             </div>
                         </div>

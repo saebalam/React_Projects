@@ -12,7 +12,7 @@ import card8 from '../../Assets/Images/card2.jpg'
 import './CardSmall.css'
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import cartProducts from '../../Action_Creators/cartProducts';
+import cartProducts from '../../Action_Creators/filteredProducts';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faHeart,faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import {toast,Toaster} from 'react-hot-toast'; 

@@ -4,7 +4,7 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { useDispatch, useSelector } from 'react-redux';
 import homePageProducts from '../../Action_Creators/homePageProducts'
-import cartProducts from '../../Action_Creators/cartProducts'
+import cartProducts from '../../Action_Creators/filteredProducts'
 import Carousel from 'react-bootstrap/Carousel';
 import carousel1 from '../../Assets/Images/carousel1.jpg'
 import carousel2 from '../../Assets/Images/carousel2.jpg'
@@ -31,6 +31,23 @@ const Home = React.memo(({ userData }) => {
     const featuredProductsObject = useSelector(state => state.homePageReducer)
     const [spinner, setSpinner] = useState(true)
     const [search,setSearch]=useState("")
+    const suggestions=useSelector(state => state.filteredReducer)
+    const [suggestionsList,setSuggestionList]=useState(suggestions.filteredProducts[0])
+    const sugg=suggestions.filteredProducts[0]
+
+    // console.log("suggestions",suggestions);
+    // console.log(suggestions.filteredProducts[0]);
+    // console.log("suggestionsList",sugg)
+
+    // {
+    //     {suggestions.filteredProducts.map((suggestion)=>{
+    //         setSuggestionList(suggestion)
+    //     })}
+    // }
+
+    // useEffect(()=>{
+    //     setSuggestionList()
+    // },[search])
 
     const fetchUser = () => {
         return function (dispatch) {
@@ -59,7 +76,7 @@ const Home = React.memo(({ userData }) => {
     }, [])
 
     useEffect(()=>{
-        
+
     },[search])
 
 
@@ -143,6 +160,7 @@ const Home = React.memo(({ userData }) => {
                                     }))
                                 }
                             </div>
+
                         </div>
 
                     }
