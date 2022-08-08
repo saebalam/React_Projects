@@ -1,97 +1,108 @@
-const featuredProducts=[
+const Products=[
     {   
         id:1,
-        title:"Ikigai",
+        title:"Lenovo",
         src:'https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGxhcHRvcHxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"5",
+        rating:"4",
         price:"250",
-        category:'book'
+        category:'laptop lenovo'
     },
     {
         id:2,
-        title:"Ikigai",
+        title:"Dell",
         src:'https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80',
-        rating:"4",
+        rating:"5",
         price:"260",
-        category:'shirt'
+        category:'laptop dell'
     },
     {
         id:3,
-        title:"Ikigai",
+        title:"Programming",
         src:'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3xlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"4",
-        price:"270"
+        rating:"3",
+        price:"270",
+        category:'book programming'
     },
     {
         id:4,
-        title:"Ikigai",
+        title:"onePlus",
         src:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9iaWxlfGVufDB8MXwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-        rating:"3",
-        price:"2100"
+        rating:"5",
+        price:"2100",
+        category:'phone mobile onePlus'
     },
     {
-        id:5,
-        title:"Ikigai",
+        id:4,
+        title:"Tshirt",
         src:'https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hpcnR8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
         rating:"3",
-        price:"280"
+        price:"280",
+        category:'shirt tshirt'
     },
     {
         id:6,
-        title:"Ikigai",
+        title:"Hero",
         src:'https://images.unsplash.com/photo-1575734124434-aeabcbd508b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJpa2V8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
         rating:"4",
-        price:"290"
+        price:"290",
+        category:'cycle'
     },
     {
         id:7,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1616628188550-808682f3926d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29weXxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"5",
-        price:"300"
+        rating:"4",
+        price:"300",
+        category:'book'
     },
     {
         id:8,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1617331721459-175bc38d2950?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29weXxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"5",
-        price:"301"
+        rating:"3",
+        price:"301",
+        category:'book'
     },
     {
         id:9,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9iaWxlfGVufDB8MXwwfHw%3D&auto=format&fit=crop&w=500&q=60',
         rating:"4",
-        price:"2100"
+        price:"2100",
+        category:'book'
     },
     {
         id:10,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hpcnR8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-        rating:"3",
-        price:"280"
+        rating:"5",
+        price:"280",
+        category:'book'
     },
     {
         id:11,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1575734124434-aeabcbd508b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJpa2V8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-        rating:"5",
-        price:"290"
+        rating:"3",
+        price:"290",
+        category:'book'
     },
     {
         id:12,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1616628188550-808682f3926d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29weXxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"3",
-        price:"300"
+        rating:"2",
+        price:"300",
+        category:'book'
     },
     {
         id:13,
         title:"Ikigai",
         src:'https://images.unsplash.com/photo-1617331721459-175bc38d2950?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29weXxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60',
-        rating:"2",
-        price:"301"
+        rating:"4",
+        price:"301",
+        category:'book'
     }
 ]
 
-module.exports=featuredProducts
+module.exports=Products

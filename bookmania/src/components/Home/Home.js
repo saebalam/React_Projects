@@ -9,10 +9,13 @@ import Carousel from 'react-bootstrap/Carousel';
 import carousel1 from '../../Assets/Images/carousel1.jpg'
 import carousel2 from '../../Assets/Images/carousel2.jpg'
 import carousel4 from '../../Assets/Images/carousel4.jpg'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import './home.css'
 import CardSmall from '../Shared_Components/CardSmall';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const override: CSSProperties = {
     position: "relative",
@@ -30,10 +33,10 @@ const Home = React.memo(({ userData }) => {
     const dispatch = useDispatch()
     const featuredProductsObject = useSelector(state => state.homePageReducer)
     const [spinner, setSpinner] = useState(true)
-    const [search,setSearch]=useState("")
-    const suggestions=useSelector(state => state.filteredReducer)
-    const [suggestionsList,setSuggestionList]=useState(suggestions.filteredProducts[0])
-    const sugg=suggestions.filteredProducts[0]
+    const [search, setSearch] = useState("")
+    const suggestions = useSelector(state => state.filteredReducer)
+    const [suggestionsList, setSuggestionList] = useState(suggestions.filteredProducts[0])
+    const sugg = suggestions.filteredProducts[0]
 
     // console.log("suggestions",suggestions);
     // console.log(suggestions.filteredProducts[0]);
@@ -75,9 +78,9 @@ const Home = React.memo(({ userData }) => {
         dispatch(fetchUser())
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[search])
+    }, [search])
 
 
 
@@ -103,7 +106,7 @@ const Home = React.memo(({ userData }) => {
                         </div>
 
                         :
-                        
+
 
                         <div className='wrapper' >
 
@@ -147,18 +150,46 @@ const Home = React.memo(({ userData }) => {
                                 </Carousel.Item>
                             </Carousel>
 
+                            <div>
+                                <ul className='ribbon'>
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                                Category
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item href="#/action-1">Accessories</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-2">Books</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Computers</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Disks</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Electronics</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Fans</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Games</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3">Home accessories</Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    <li><Link to='#'>Recommended For You</Link></li>
+                                    <li><Link to='#'>Today's Deal</Link></li>
+                                    <li><Link to='#'>Help</Link></li>
+                                </ul>
+                            </div>
 
                             {/* Featured products */}
                             {/* <button onClick={()=>dispatch(fetchUser())}>click</button> */}
-                            <div className='featured-products-container'>
-                                {(featuredProductsObject.featuredProducts) && (
+                            <div >
+                                <div className='featuredProductsHeading'>
+                                    <h5>Featured Products</h5>
+                                </div>
+                                <div className='featured-products-container'>
+                                    {(featuredProductsObject.featuredProducts) && (
 
-                                    featuredProductsObject.featuredProducts.map((product) => {
-                                        // console.log("product",product);
-                                        const { id, title, src, rating, price } = product
-                                        return <CardSmall props={{ id, title, src, rating, price }} />
-                                    }))
-                                }
+                                        featuredProductsObject.featuredProducts.map((product) => {
+                                            // console.log("product",product);
+                                            const { id, title, src, rating, price } = product
+                                            return <CardSmall props={{ id, title, src, rating, price }} />
+                                        }))
+                                    }
+                                </div>
                             </div>
 
                         </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup';
 import card from '../../Assets/Images/card.jpg'
+import empty_cart from '../../Assets/Images/empty_cart2.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSquareMinus, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,8 +15,9 @@ const Cart = () => {
     // const [cartSize,setCartSize]=useState(cartItems.length)
     const [refreshCart, setRefreshCart] = useState(cartItems.length)
     const [quantity, setQuantity] = useState(0)                            //to track change in quantity for re render
-    const [totalPrice,setTotalPrice]=useState()
-    const discount=18
+    const [totalPrice, setTotalPrice] = useState()
+    const discount = 18
+    var arr = []
 
 
     useEffect(() => {
@@ -29,11 +31,11 @@ const Cart = () => {
                 }
             )
 
-            axios.get('/getTotalPrice')
-            .then(res=>{
-                var total=0
-                res.data.map(item=>{
-                    total+=item.quantity * parseInt(item.price)
+        axios.get('/getTotalPrice')
+            .then(res => {
+                var total = 0
+                res.data.map(item => {
+                    total += item.quantity * parseInt(item.price)
                     setTotalPrice(total)
                 })
 
@@ -46,14 +48,14 @@ const Cart = () => {
         // const quan=
         if (quantity >= 1) {
             axios.post(`/decreaseCartQuantity/${id}`)
-            .then(setQuantity(quantity + 1))
-           
+                .then(setQuantity(quantity + 1))
+
         }
     }
     const increaseQuantity = (id) => {
         axios.post(`/increaseCartQuantity/${id}`)
             .then(setQuantity(quantity + 1))
-            console.log("upd", cartItems);
+        console.log("upd", cartItems);
     }
 
     const handleRemoveFromCart = (id) => {
@@ -63,17 +65,22 @@ const Cart = () => {
         axios.post(`/removeItem/${id}`)
             .then(console.log("added"))
             .then(setRefreshCart(cartItems.length - 1))
-        
+
     }
 
     return (
-        <div className='main-div' >
+        <div className='main-div' style={{background:'#f8f8f8'}}>
             {(cartItems.length === 0)
                 ?
                 <div style={{ margin: "0 auto" }}>
-                    <h2>Cart is Empty !!!!</h2>
-                    <h4>Please add something to cart :)</h4>
-                    <Link to='/'>Home</Link>
+                    {/* <div>
+                        <h2>Cart is Empty !!!!</h2>
+                        <h4>Please add something to cart :)</h4>
+                    </div> */}
+                    <div>
+                        <img src={empty_cart} alt="" style={{background:'white',height:'22rem'}} />
+                    </div>
+                        <Link to='/' style={{color:'black'}}>Let's go Shopping !!! </Link>
                 </div>
                 :
                 <div className=''>
@@ -93,13 +100,19 @@ const Cart = () => {
                                     <td className='td1'>
                                         {/* {console.log("props", props.props)} */}
                                         <div >
-                                            <img src={card} alt=""  />
+                                            <img src={card} alt="" />
                                         </div>
 
                                         <div className="my-list-group-flush">
                                             <div>{cartItem.title}</div>
-                                            <div>{cartItem.rating}</div>
-                                            
+                                            <div style={{ display: 'flex' }}>
+                                                {
+                                                    new Array(parseInt(cartItem.rating)).fill(0).map(item => {
+                                                        return <div>&#9733;</div>
+                                                    })
+                                                }
+                                            </div>
+
                                         </div>
                                     </td>
 
@@ -112,7 +125,7 @@ const Cart = () => {
                                     </td>
                                     <td className='td3'>
                                         <div className='amount'>
-                                        &#8377; {cartItem.price}
+                                            &#8377; {cartItem.price}
                                         </div>
                                     </td>
                                     <td className='td4'>
@@ -148,7 +161,7 @@ const Cart = () => {
                                 </div>
                                 <div>
                                     <p>Total</p>
-                                    <p>&#8377; {totalPrice-discount}</p>
+                                    <p>&#8377; {totalPrice - discount}</p>
                                 </div>
                             </div>
                         </div>

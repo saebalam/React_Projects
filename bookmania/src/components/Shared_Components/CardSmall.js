@@ -14,14 +14,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import cartProducts from '../../Action_Creators/filteredProducts';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faHeart,faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
-import {toast,Toaster} from 'react-hot-toast'; 
+import { faHeart,faHeartCircleCheck,faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
+import {toast,Toaster} from 'react-hot-toast';
 
 const CardSmall = (props) => {
     // toast.configure()
 
     const dispatch = useDispatch()
     const [cartIcon,setCartIcon]=useState(faCartPlus)
+    const [wishlistIcon,setWishlistIcon]=useState(faHeart)
+
     const handleCart = (id)=>{
         if(cartIcon==faCartPlus){
             const obj={...props.props,quantity:1}
@@ -36,6 +38,11 @@ const CardSmall = (props) => {
                 // .then( setCartIcon((cartItem) => (cartItem === faCartPlus ? faCheck : faCartPlus)))
         }
     }
+
+    const handleWishlist=(props)=>{
+        axios.post('/addToWishlist',props)
+            .then(setWishlistIcon((wishlistIcon) => (wishlistIcon === faHeart ? faHeartCircleCheck : faHeart)))
+    }
     
     return (
         <Card style={{ Width:'13rem',minWidth:"12.7rem",maxHeight:"321px",margin:"10px"}} className="card-small">
@@ -47,10 +54,9 @@ const CardSmall = (props) => {
                 <ListGroup.Item style={{padding:"2px 5px"}}>{props.props.price}</ListGroup.Item>
             </ListGroup>
             <Card.Body style={{padding:"3px 5px"}}>
-                <button href="#"><FontAwesomeIcon icon={faHeart} className="heartButton" /></button>
+                <button onClick={()=>handleWishlist(props.props)}><FontAwesomeIcon icon={wishlistIcon} className="heartButton" /></button>
                 {/* <button onClick={()=>{dispatch(cartProducts(props.props)) }}><FontAwesomeIcon icon={faCartPlus} /></button> */}
                 <button onClick={()=>handleCart(props.props.id)} ><FontAwesomeIcon icon={cartIcon} className="cartButton"  /></button>
-                
             </Card.Body>
         </Card>
     )

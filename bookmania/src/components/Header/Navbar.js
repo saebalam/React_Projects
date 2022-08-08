@@ -42,7 +42,7 @@ function Navbar(props) {
                 <Link to="/" onClick={logout} className='nav-link'>Logout</Link>
             </li>
             <li className='nav-item'>
-                <Link to='/register' className='nav-link'>Wishlist</Link>
+                <Link to='/wishlist' className='nav-link'>Wishlist</Link>
             </li>
             <li className='nav-item'>
                 <Link to='/cart' className='nav-link'>Cart</Link>
@@ -54,7 +54,7 @@ function Navbar(props) {
                 <Link to="/login" className='nav-link'>Login</Link>
             </li>
             <li className='nav-item'>
-                <Link to='/login' className='nav-link'>Wishlist</Link>
+                <Link to='/wishlist' className='nav-link'>Wishlist</Link>
             </li>
             <li className='nav-item'>
                 <Link to='/login' className='nav-link'>Cart</Link>

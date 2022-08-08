@@ -8,7 +8,7 @@ nav #search{
 }
 .suggestion-box ul{
     margin-bottom: 0.6rem;
-    margin-left: -25px;
+    margin-left: 10px;
     padding-left: 0rem;
 }
 .suggestion-box li{
@@ -16,10 +16,11 @@ nav #search{
     width: 100px;
     color: white;
     line-height: 0px;
+    text-align: left;
     /* border: 1px solid red; */
 }
 .suggestion-box hr{
-    margin-left: 25px;
+    margin-left: -10px;
     width: 65rem;
     margin-top: 9px;
     margin-bottom: 9px;
