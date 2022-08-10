@@ -20,7 +20,7 @@ import {toast,Toaster} from 'react-hot-toast';
 const CardSmall = (props) => {
     // toast.configure()
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const [cartIcon,setCartIcon]=useState(faCartPlus)
     const [wishlistIcon,setWishlistIcon]=useState(faHeart)
 

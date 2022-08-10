@@ -12,7 +12,8 @@
     "redux-logger": "^3.0.6"
   },
   "scripts": {
+    "start:react": "parcel serve client/index.html --open --dist-dir client/build",
     "start": "node app.js",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "build": "parcel build index.html --dist-dir build"
   }
 }
