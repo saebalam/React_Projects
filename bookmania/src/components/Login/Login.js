@@ -5,11 +5,30 @@ import { BrowserRouter as Redirect, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import Home from '../Home/Home'
 import google_signin from '../../Assets/Images/google_signin.png'
+import {useFormik} from 'formik'
 
+const validate = values => {
+    const errors = {};
+  
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid Email Address';
+    }
+
+    if(!values.password){
+        errors.password= 'Required'
+    }else if(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i.test(values.password)){
+        errors.email = 'Password must meet minimum criteria';
+    }
+  
+    return errors;
+  };
+  
 
 function Login(props) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
     const [isLoggedin, setIsLoggedin] = useState(true)
 
     const nav = useNavigate()
@@ -17,7 +36,7 @@ function Login(props) {
 
     const handleForm = (e) => {
         e.preventDefault()
-        const data = { "userInfo": { "email": email, "password": password } }
+        const data = { "userInfo": { "email": formik.values.email, "password": formik.values.password } }
         const API_DATA = JSON.stringify(data)
         // axios.get('http://localhost:9000/')
         // .then((res)=>setEmail(res))
@@ -37,6 +56,17 @@ function Login(props) {
 
     }
 
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password:''
+        },
+        validate,
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2))
+        }
+    })
+
     return (
         <div className='login' style={{ marginTop: '100px', margnBottom: "20px" }}>
             {isLoggedin &&
@@ -44,14 +74,16 @@ function Login(props) {
                     <form onSubmit={handleForm} className='m-auto col-lg-3'>
                         <h3>Login</h3>
                         <div className="form-group">
-                            <label htmlFor="" className=''>Email</label>
-                            <input type="text" className='form-control' name="" id="" placeholder='Enter email or number'
-                                value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <label htmlFor="email" className=''>Email</label>
+                            <input type="email" className='form-control' name="email" id="" placeholder='Enter email or number'
+                                value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                                {formik.touched.email && formik.errors.email ? <div style={{color:"#bd0707"}}>{formik.errors.email}</div> : null}
                         </div>
                         <div className="form-group">
                             <label htmlFor="">Password</label>
-                            <input type="password" className='form-control' name="" id="" placeholder='Enter your password'
-                                value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" className='form-control' name="password" id="" placeholder='Enter your password'
+                                value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                            {formik.touched.password && formik.errors.password ? <div style={{color:"#bd0707"}}>{formik.errors.password}</div> : null}
                             <div className="forgot-password"><Link replace to='/register'>Forgot Password ?</Link></div>
                         </div>
                         <div className="form-group" id='login-btn'>
@@ -64,7 +96,7 @@ function Login(props) {
                                 <div><a href="#"><img src={google_signin} alt="" style={{ width: "10rem", height: "2rem" }} /></a></div>
                             </div>
                             <div>
-                                <Link replace to='/register' style={{color:"black"}}>SIGN UP</Link>
+                                <Link replace to='/register' style={{ color: "black" }}>SIGN UP</Link>
                             </div>
                         </div>
                     </form>
